@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpellCheckerConsole.Interfaces
 {
-    interface IWordDictionary
+    public interface IWordDictionary
     {
         bool checkWord(string word);
     }

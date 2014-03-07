@@ -23,20 +23,6 @@ namespace SpellCheckerConsole.Interfaces
         List<string> listVowelVariations(string toParse);
 
         /// <summary>
-        /// returns the given string in all upperCase
-        /// </summary>
-        /// <param name="toParse"></param>
-        /// <returns>upperCase</returns>
-        string toUpper(string toParse);
-
-        /// <summary>
-        /// returns the given string in all lowerCase
-        /// </summary>
-        /// <param name="toParse"></param>
-        /// <returns>lowerCase</returns>
-        string toLower(string toParse);
-
-        /// <summary>
         /// returns true if the given string is valid input ex: {(a-b)* | (A-B)*}
         /// </summary>
         /// <param name="toValidate"></param>

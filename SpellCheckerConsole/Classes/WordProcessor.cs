@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SpellCheckerConsole.Classes
 {
-    class WordProcessor : IWordProcessor
+    public class WordProcessor : IWordProcessor
     {
         /// <summary>
         /// private utils for class use only
@@ -39,7 +39,49 @@ namespace SpellCheckerConsole.Classes
         /// <returns></returns>
         public string resolveWord(string word)
         {
-            throw new NotImplementedException();
+            if (utilities.validateInput(word))
+            {
+                word = word.ToLower();
+
+                if (wordDictionary.checkWord(word))
+                {
+                    return word;
+                }
+
+                
+                List<string> duplicateList = utilities.listDuplicateVariations(word);
+
+                foreach(string i in duplicateList)
+                {
+                    if (wordDictionary.checkWord(i))
+                    {
+                        return i;
+                    }
+                }
+
+                List<string> vowelList = utilities.listVowelVariations(word);
+
+                foreach (string i in vowelList)
+                {
+                    if (wordDictionary.checkWord(i))
+                    {
+                        return i;
+                    }
+                }
+
+                foreach(string i in vowelList)
+                {
+                    duplicateList = utilities.listDuplicateVariations(i);
+                    foreach(string j in duplicateList)
+                    {
+                        if(wordDictionary.checkWord(j))
+                        {
+                            return j;
+                        }
+                    }
+                }
+            }
+            return "NO SUGGESTION";
         }
     }
 }

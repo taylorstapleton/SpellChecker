@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SpellCheckerConsole.Classes
 {
-    class WordDictionary : IWordDictionary
+    public class WordDictionary : IWordDictionary
     {
         /// <summary>
         /// hash set of strings representing the english language

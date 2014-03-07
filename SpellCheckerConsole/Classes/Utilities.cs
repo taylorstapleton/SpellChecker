@@ -86,27 +86,57 @@ namespace SpellCheckerConsole.Classes
         /// <returns></returns>
         public List<string> listVowelVariations(string toParse)
         {
-            throw new NotImplementedException();
+            List<char> vowels = new List<char>() { 'a', 'e', 'i', 'o', 'u' };
+            if(toParse.Length < 1)
+            {
+                return new List<string>() { toParse };
+            }
+
+            List<string> toReturn = new List<string>();
+
+            for (int i = 0; i < toParse.Length; i++ )
+            {
+                if(IsVowel(toParse[i]))
+                {
+                    string wordBase = toParse.Substring(0, i);
+                    List<string> wordBaseList = new List<string>();
+
+                    foreach(char vowel in vowels)
+                    {
+                        wordBaseList.Add(wordBase + vowel.ToString());
+                    }
+
+                    List<string> recursiveResults = listVowelVariations(toParse.Substring(i + 1));
+
+                    foreach(string j in wordBaseList)
+                    {
+                        foreach(string k in recursiveResults)
+                        {
+                            toReturn.Add(j + k);
+                        }
+                    }
+
+                    break;
+                }
+            }
+            if (toReturn.Count == 0)
+            {
+                return new List<string>(){toParse};
+            }
+            else
+            {
+                return toReturn;
+            }
         }
 
         /// <summary>
-        /// convert given string to upper case
+        /// helper vowel method
         /// </summary>
-        /// <param name="toParse"></param>
+        /// <param name="character"></param>
         /// <returns></returns>
-        public string toUpper(string toParse)
+        private static bool IsVowel(char character)
         {
-            return toParse.ToUpper();
-        }
-
-        /// <summary>
-        /// convert given string to lower case
-        /// </summary>
-        /// <param name="toParse"></param>
-        /// <returns></returns>
-        public string toLower(string toParse)
-        {
-            return toParse.ToLower();
+            return new[] { 'a', 'e', 'i', 'o', 'u' }.Contains(char.ToLower(character));
         }
 
         /// <summary>

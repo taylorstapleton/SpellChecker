@@ -21,7 +21,7 @@ namespace SpellCheckerConsole.Classes
         /// <param name="injectedWordProcessor"></param>
         public InputProcessor(IWordProcessor injectedWordProcessor)
         {
-            throw new NotImplementedException();
+            this.wordProcessor = injectedWordProcessor;
         }
 
         /// <summary>
@@ -30,7 +30,13 @@ namespace SpellCheckerConsole.Classes
         /// </summary>
         public void start()
         {
-            throw new NotImplementedException();
+            Console.Write(">");
+            while (true)
+            {
+                string input = Console.ReadLine();
+                Console.WriteLine(wordProcessor.resolveWord(input));
+                Console.Write(">");
+            }
         }
     }
 }
