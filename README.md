@@ -12,5 +12,5 @@ a few notes:
  - interfaces can be found in the Interfaces Folder
  - Tests can be found in the test project
  - SpellChecker uses the Moq framework for unit testing as a nuget package
- - SpellChecker relies on a resource file called dictionary.txt
+ - SpellChecker relies on a file called dictionary.txt in the Resources folder
 
