@@ -48,7 +48,6 @@ namespace SpellCheckerConsole.Classes
                     return word;
                 }
 
-                
                 List<string> duplicateList = utilities.listDuplicateVariations(word);
 
                 foreach(string i in duplicateList)
