@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SpellCheckerConsole.Interfaces
 {
-    interface IUtilities
+    public interface IUtilities
     {
         /// <summary>
         /// returns a list of all the possible variations of duplicate letters in the given string

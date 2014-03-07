@@ -18,7 +18,7 @@ namespace SpellCheckerConsole
         static void Main(string[] args)
         {
             // set text path
-            string textFilePath = "testPath";
+            string textFilePath = "../../Resources/dictionary.txt";
 
             // initialize our wordDictionary with path
             IWordDictionary wordDictionary = new WordDictionary(textFilePath);

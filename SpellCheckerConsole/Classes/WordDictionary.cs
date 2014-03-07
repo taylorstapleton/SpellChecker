@@ -1,6 +1,7 @@
 ﻿using SpellCheckerConsole.Interfaces;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,12 +11,33 @@ namespace SpellCheckerConsole.Classes
     class WordDictionary : IWordDictionary
     {
         /// <summary>
+        /// hash set of strings representing the english language
+        /// </summary>
+        private HashSet<string> hashSet;
+
+        /// <summary>
         /// constructor
         /// </summary>
         /// <param name="filePath"></param>
         public WordDictionary(string filePath)
         {
-            throw new NotImplementedException();
+            hashSet = new HashSet<string>();
+            try
+            {
+                using (StreamReader sr = new StreamReader(filePath))
+                {
+                    string line = string.Empty;
+                    while ((line = sr.ReadLine()) != null)
+                    {
+                        hashSet.Add(line);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("The file could not be read:");
+                Console.WriteLine(e.Message);
+            }
         }
 
         /// <summary>
@@ -25,7 +47,7 @@ namespace SpellCheckerConsole.Classes
         /// <returns></returns>
         public bool checkWord(string word)
         {
-            throw new NotImplementedException();
+            return hashSet.Contains(word);
         }
     }
 }
