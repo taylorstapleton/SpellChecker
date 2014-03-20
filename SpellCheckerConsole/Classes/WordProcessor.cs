@@ -39,17 +39,22 @@ namespace SpellCheckerConsole.Classes
         /// <returns></returns>
         public string resolveWord(string word)
         {
+            // first check if input is valid {a-z | A-Z}
             if (utilities.validateInput(word))
             {
+                // set the word to lower case
                 word = word.ToLower();
 
+                // if we are already a valid word, return
                 if (wordDictionary.checkWord(word))
                 {
                     return word;
                 }
 
+                // create a list of all the possible words regarding duplicate letters
                 List<string> duplicateList = utilities.listDuplicateVariations(word);
 
+                // check to see if any of the generated variations are words
                 foreach(string i in duplicateList)
                 {
                     if (wordDictionary.checkWord(i))
@@ -58,8 +63,11 @@ namespace SpellCheckerConsole.Classes
                     }
                 }
 
+                // create a list of all the possible words regarding vowel variations
+                // note: this method is notably innefficient when a significant amount of vowels are present
                 List<string> vowelList = utilities.listVowelVariations(word);
 
+                // check to see if any of the vowel variations are words
                 foreach (string i in vowelList)
                 {
                     if (wordDictionary.checkWord(i))
@@ -68,6 +76,7 @@ namespace SpellCheckerConsole.Classes
                     }
                 }
 
+                // if we have gotten this far, its time to check combinations of the two lsits
                 foreach(string i in vowelList)
                 {
                     duplicateList = utilities.listDuplicateVariations(i);
@@ -80,6 +89,7 @@ namespace SpellCheckerConsole.Classes
                     }
                 }
             }
+            // finally return default case if no matches
             return "NO SUGGESTION";
         }
     }
